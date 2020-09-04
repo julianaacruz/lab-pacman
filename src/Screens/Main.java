@@ -18,9 +18,7 @@ public class Main extends PApplet{
 
 	}
 	public void setup() {
-			scores = loadImage ("HighScores.png");
-			scores.loadPixels();
-			image (scores,0,0);
+			
 	}
 	
 	public void draw() {
