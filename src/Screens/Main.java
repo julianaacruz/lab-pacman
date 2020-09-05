@@ -1,6 +1,5 @@
 package Screens;
 
-
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -10,16 +9,18 @@ public class Main extends PApplet{
 	private PImage scores;
 	private PImage marker;
 	private PImage howto;
-	private PImage pacman1;
-	public PImage up1,up2;
-	public PImage down1,down2;
-	public PImage left1,left2;
-	public PImage right1,right2;
-	public PImage blue, yellow, red, orange;
-	public PApplet app;
-	boolean htp = true;
+    //private PImage blue, yellow, red, orange;
+    // private PApplet app;
+	/*public PImage pacman1;
+    private PImage up1,up2;
+    private PImage down1,down2;
+    private PImage left1,left2;
+    private PImage right1,right2;*/
+    private boolean htp = true;
 	public int screen = 0;
-
+	Pacman pacman;
+	Maze maze;
+	
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
 	}
@@ -28,29 +29,23 @@ public class Main extends PApplet{
 
 	}
 	public void setup() {
-		  menu = loadImage ("Menu.png");
+		//pacman1 = loadImage("Pacman1.png");
+		menu = loadImage ("Menu.png");
 		  marker = loadImage ("Marker.png");
 		  board = loadImage ("Board.png");
 		  scores = loadImage ("HighScores.png");
 		  howto = loadImage ("HowToPlay.png");
-			pacman1 = loadImage("Pacman1.png");
-			up1 = loadImage("PacmanUp2.png");
-			up2 = loadImage("PacmanUp3.png");
-			down1 = loadImage("PacmanDown2.png");
-			down2 = loadImage("PacmanDown3.png");
-			left1 = loadImage("PacmanLeft2.png");
-			left2 = loadImage("PacmanLeft3.png");
-			right1 = loadImage("PacmanRight2.png");
-			right2 = loadImage("PacmanRight3.png");
-			blue = loadImage("Inky.png");
+			/*blue = loadImage("Inky.png");
 			red = loadImage("Blinky.png");
 			yellow = loadImage("Kiiro.png");
-			orange = loadImage("Clyde.png");
+			orange = loadImage("Clyde.png");*/
+			
+			pacman = new Pacman(this);
+			maze = new Maze (this);
 
 	}
 	
 	public void draw() {
-
 		switch(screen) {
 
 		  case 0: 
@@ -74,8 +69,11 @@ public class Main extends PApplet{
 				board.loadPixels();
 				howto.loadPixels();
 				image (board,0,0);
-				pacman1.loadPixels();
-				image(pacman1,286,472);
+				//pacman1.loadPixels();
+				//image(pacman1,286,472);
+				pacman.drawPacman();
+				maze.drawMaze();
+				maze.keyPressed();
 				if(htp==true) {
 					image (howto,92,100);
 				}
