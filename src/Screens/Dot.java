@@ -17,7 +17,7 @@ public class Dot extends PApplet {
 	
 	public void crear(int posX, int posY) {
 		app.fill(255);
-		app.ellipse(posX+30, posY+30, size, size);	
+		app.ellipse(posX, posY, size, size);	
 		x=posX;
 		y= posY;
 	}

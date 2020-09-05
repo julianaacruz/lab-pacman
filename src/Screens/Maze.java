@@ -4,7 +4,7 @@ import processing.core.PApplet;
 public class Maze extends PApplet{
 	int [][] matrix; 
 	int col,row;
-	int posX,posY;	
+	float posX,posY;	
 	int matX, matY;
 	private PApplet app;
 	
@@ -16,8 +16,8 @@ public class Maze extends PApplet{
 	public void setup() {
 		col  = 30;
 		row  = 35;
-		posX = 60;
-		posY = 60;
+		posX = 100;
+		posY = 100;
 		matX = 1;
 		matY = 1;
 	    matrix  = new int [][]{
@@ -61,55 +61,53 @@ public class Maze extends PApplet{
 	}
 
 	public void drawMaze(){
-		
-		for (int i = 0; i < col; i++) {
-			for (int j = 0; j < row; j++) {
-				if(matrix[j][i] == 0) {
+		for (int i = 0; i < this.col; i++) {
+			for (int j = 0; j < this.row; j++) {
+				System.out.println("hey");
+				rect((i*20),(j*20),20,20);
+				if(this.matrix[j][i] == 0) {
 					app.fill(255);
-				}else if (matrix[j][i] == 1) {
+				}else if (this.matrix[j][i] == 1) {
 					app.fill(0);
 				}else {
 					app.fill(255,0,0);
 				}
-				rect((i*40),(j*40),40,40);
+				rect((i*20),(j*20),20,20);
 			}
 		}
 		
 		app.ellipse(posX,posY,25,25);
 	}
 
-	public void mousePressed() {
 	
-	}
-	
-	public void keyPressed() {
+	/*public void keyPressed() {
 		switch (keyCode) {
 		case RIGHT:
 			if(matrix[matY][matX+1]!=1) {
-				posX += 40;
+				posX += 20;
 				matX++;
 			}
 			break;
 		case LEFT:
 			if(matrix[matY][matX-1]!=1) {
-				posX -= 40;
+				posX -= 20;
 				matX--;
 			}
 			break;
 		case UP:
 			if(matrix[matY-1][matX]!=1) {
-				posY -= 40;
+				posY -= 20;
 				matY--;
 			}
 			break;
 		case DOWN:
 			if(matrix[matY+1][matX]!=1) {
-				posY += 40;
+				posY += 20;
 				matY++;
 			}
 			break;
 		default:
 			break;
 		}
-	}
+	}*/
 }

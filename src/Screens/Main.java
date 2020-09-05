@@ -4,48 +4,165 @@ import processing.core.PApplet;
 import processing.core.PImage;
 
 public class Main extends PApplet{
-	private PImage menu;
-	private PImage board;
-	private PImage scores;
-	private PImage marker;
-	private PImage howto;
-    //private PImage blue, yellow, red, orange;
-    // private PApplet app;
-	/*public PImage pacman1;
-    private PImage up1,up2;
-    private PImage down1,down2;
-    private PImage left1,left2;
-    private PImage right1,right2;*/
+	
+
+	static PImage menu;
+	static PImage board;
+	static PImage scores;
+	static PImage marker;
+	static PImage howto;
+	static PImage blue, yellow, red, orange;
+	static PImage pacman1;
+	static PImage up1,up2;
+	static PImage down1,down2;
+	static PImage left1,left2;
+	static PImage right1,right2;
     private boolean htp = true;
 	public int screen = 0;
 	Pacman pacman;
 	Maze maze;
+	int size;
+	int [][] matrix; 
+	float posX,posY;	
+	int matX, matY;
+	int col,row;
+
 	
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
 	}
+	
 	public void settings() {
 		size(600,700);
 
 	}
 	public void setup() {
-		//pacman1 = loadImage("Pacman1.png");
+		pacman1 = loadImage("Pacman1.png");
 		menu = loadImage ("Menu.png");
-		  marker = loadImage ("Marker.png");
-		  board = loadImage ("Board.png");
-		  scores = loadImage ("HighScores.png");
-		  howto = loadImage ("HowToPlay.png");
-			/*blue = loadImage("Inky.png");
-			red = loadImage("Blinky.png");
-			yellow = loadImage("Kiiro.png");
-			orange = loadImage("Clyde.png");*/
+		marker = loadImage ("Marker.png");
+		board = loadImage ("Board.png");
+		scores = loadImage ("HighScores.png");
+		howto = loadImage ("HowToPlay.png");
+		blue = loadImage("Inky.png");
+		red = loadImage("Blinky.png");
+		yellow = loadImage("Kiiro.png");
+		orange = loadImage("Clyde.png");
 			
-			pacman = new Pacman(this);
-			maze = new Maze (this);
+		pacman = new Pacman(this);
+		maze = new Maze (this);
 
+		col = 30;
+		row = 35;
+		size=20;
+		posX = 100;
+		posY = 100;
+		matX = 1;
+		matY = 1;
+	    matrix  = new int [][]{
+	    	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	    	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,1,1,1,0,1,1,1,1,0,0,1,1,0,1,1,1,1,1,0,1,1,1,0,1,1,1},
+			{1,1,1,0,1,1,1,0,1,1,1,1,0,0,1,1,0,1,1,1,1,1,0,1,1,1,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1,1,1},
+			{1,1,1,0,1,1,1,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,1,1,1,0,1,1,1},
+			{1,1,1,0,1,1,1,0,1,1,0,0,0,0,1,1,0,0,0,0,1,1,0,1,1,1,0,1,1,1},
+			{1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,1,1,1,1,1,0,1,1,0,1,1,1,1,1,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,1,1,0,1,1,1,1,1,1,1,1,0,1,1,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,1,1,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+			{1,1,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1},
+	    	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	    	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	    	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+	    	{1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
+			
+		};
 	}
+
 	
+	public int getSize() {
+		return size;
+	}
+
+	public void setSize(int size) {
+		this.size = size;
+	}
+
+	public float getPosX() {
+		return posX;
+	}
+
+	public void setPosX(float posX) {
+		this.posX = posX;
+	}
+
+	public float getPosY() {
+		return posY;
+	}
+
+	public void setPosY(float posY) {
+		this.posY = posY;
+	}
+
+	public int getMatX() {
+		return matX;
+	}
+
+	public void setMatX(int matX) {
+		this.matX = matX;
+	}
+
+	public int getMatY() {
+		return matY;
+	}
+
+	public void setMatY(int matY) {
+		this.matY = matY;
+	}
+
+	public int getCol() {
+		return col;
+	}
+
+	public void setCol(int col) {
+		this.col = col;
+	}
+
+	public int getRow() {
+		return row;
+	}
+
+	public void setRow(int row) {
+		this.row = row;
+	}
+
 	public void draw() {
+		//board.loadPixels();
+		//image (board,0,0);
+	
+
+		//maze.drawMaze();
+		//pacman.drawPacman();
+		//maze.keyPressed();
 		switch(screen) {
 
 		  case 0: 
@@ -72,8 +189,24 @@ public class Main extends PApplet{
 				//pacman1.loadPixels();
 				//image(pacman1,286,472);
 				pacman.drawPacman();
-				maze.drawMaze();
-				maze.keyPressed();
+				for (int i = 0; i < col; i++) {
+					for (int j = 0; j < row; j++) {
+						int a=255;
+						stroke(0);
+						fill(a,22);
+						rect((i*size),(j*size),size,size);
+						if(matrix[j][i] == 1) {
+							a=0;
+							System.out.println("1");
+					}
+				}
+				}
+				
+
+				ellipse(posX,posY,25,25);
+				
+				//maze.drawMaze();
+				//maze.keyPressed();
 				if(htp==true) {
 					image (howto,92,100);
 				}
@@ -91,9 +224,12 @@ public class Main extends PApplet{
 					screen=0;
 		}
 				break;
-		}
+		} 
 	}
+	
+	
 	}
+	
 	
 			
 	
