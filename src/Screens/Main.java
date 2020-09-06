@@ -264,8 +264,14 @@ public class Main extends PApplet{
 
 	public void draw() {
 		
+		
+		
+		
+		
 		switch(screen) { // PANTALLAS
 
+		
+		//inical
 		  case 0: 
 			  int x=330; //pos marker
 			  int y=200;
@@ -283,9 +289,11 @@ public class Main extends PApplet{
 				 screen = 2;	  
 				  }
 				break;
+				
+				//juego
 		  case 1: 
 
-			  
+			 
 			  background (0);
 			
 				for(int fila = 0; fila < 20; fila++) {
@@ -413,6 +421,8 @@ public class Main extends PApplet{
 					    
 					    
 					    //Consultar en la matriz el valor futuro
+					    
+					    //movimiento
 					    if(timeStart==true) {
 					    
 					    if(velx == 30){
@@ -431,6 +441,8 @@ public class Main extends PApplet{
 					    }
 					    
 					    
+					    //enemigos
+					    
 					    int filaE = posYE/30;
 					    int columnaE = posXE/30;
 					    matrix[filaE][columnaE]=1;
@@ -441,9 +453,6 @@ public class Main extends PApplet{
 						    	matrix[filaE+1][columnaE]=0;
 							    }
 						    
-					    
-						    
-						    //enemigos
 					    
 					    int filaE2 = posYE2/30;
 					    int columnaE2= posXE2/30;
@@ -480,19 +489,40 @@ public class Main extends PApplet{
 					    
 					    
 					    //objeto1
-					    int filaOB= posYO/30;
-					    int columnaOB = posXO/30;
-					    matrix[filaOB][columnaOB]=2;
-					    
+						    if(dot1==true) {
+						    	 int filaOB= posYO/30;
+								    int columnaOB = posXO/30;
+								    matrix[filaOB][columnaOB]=2;  
+						    }
+						    if(dot1==false) {
+						    	 int filaOB= posYO/30;
+								    int columnaOB = posXO/30;
+								    matrix[filaOB][columnaOB]=0;  
+						    }
+					   
 					    //objeto2
+						    if(dot2==true) {
 					    int filaOB1= posYO1/30;
 					    int columnaOB1 = posXO1/30;
 					    matrix[filaOB1][columnaOB1]=2;
-					    
+						    }
+						    if(dot2==false) {
+						    	 int filaOB= posYO/30;
+								    int columnaOB = posXO/30;
+								    matrix[filaOB][columnaOB]=0;  
+						    }
 					    //objeto3
+						    if(dot3==true) {
 					    int filaOB2= posYO2/30;
 					    int columnaOB2 = posXO2/30;
 					    matrix[filaOB2][columnaOB2]=2;
+						    }
+						    
+						    if(dot3==false) {
+						    	 int filaOB= posYO/30;
+								    int columnaOB = posXO/30;
+								    matrix[filaOB][columnaOB]=0;  
+						    }
 					    
 					    
 					    
@@ -511,6 +541,7 @@ public class Main extends PApplet{
 					          posX += velx;
 					          posY += vely;
 					          matrix[posX/30][posY/30] = 0;
+					          
 					          if(posX==180&&posY==210){
 					        	  
 					        	  dot1=false;
@@ -552,6 +583,7 @@ public class Main extends PApplet{
 				
 				
 		
+				//instrucciones
 				if(htp==true) {
 					image (howto,92,100);
 				}
@@ -560,9 +592,16 @@ public class Main extends PApplet{
 			    timeStart=true;
 				} 
 				
-				//
+				//final
+				
+				if (winScreen==true && mouseX>250 && mouseX<385 && mouseY>380 && mouseY<430 && screen==1 && mousePressed==true) {			
+					screen=0;
+				} 
 				
 				break;
+				
+				
+				//puntajes
 		  case 2:
 			//	scores.loadPixels();
 				image (scores,0,0);
