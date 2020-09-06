@@ -3,28 +3,18 @@
 	import processing.core.PApplet;
 	public class Character extends PApplet {
 		//public PImage pacman1;
+			PApplet app;
+			int tamX,tamY;
+			
 
-		public PApplet app;
-		public int up;
-		public int down;
-		public int left;
-		public int right;
-		public int x;
-		public int y;
-		public int direction;
-		
-		public int getX() {
-			return x;
+			public Character(PApplet app) {
+				this.app = app;
+				tamX=20;
+				tamY=20;
+			}
+			
+			public void pintar(int posXE, int posYE) {
+				app.fill(255,0,255);
+				app.ellipse(posXE, posYE, tamX, tamY);
+			}
 		}
-		public void setX(int x) {
-			this.x = x;
-		}
-		public int getY() {
-			return y;
-		}
-		public void setY(int y) {
-			this.y = y;
-		}
-
-	}
-
