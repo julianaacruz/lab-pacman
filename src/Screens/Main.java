@@ -275,7 +275,7 @@ public class Main extends PApplet{
 		switch(screen) { // PANTALLAS
 
 		
-		//inical
+		// pantalla inical
 		  case 0: 
 			  int x=330; //pos marker
 			  int y=200;
@@ -294,7 +294,7 @@ public class Main extends PApplet{
 				  }
 				break;
 				
-				//juego
+				//pantalla juego
 		  case 1: 
 
 			 
@@ -375,7 +375,7 @@ public class Main extends PApplet{
 						time++;
 					}
 					
-					//enemigos mov	
+					//Movimiento de los enemigos
 					
 					//1
 					posYE+=vel;
@@ -420,7 +420,7 @@ public class Main extends PApplet{
 					
 					
 						
-					    //Coordenadas de la matriz  
+					    //Coordenadas en la matriz de la posicion del pacman 
 					    int fila = posY/30;
 					    int columna = posX/30;
 					    int estadoFuturo = -1;
@@ -447,7 +447,7 @@ public class Main extends PApplet{
 					    }
 					    
 					    
-					    //enemigos
+					    //posicion en la matriz de los enemigos
 					    
 					    int filaE = posYE/30;
 					    int columnaE = posXE/30;
@@ -494,7 +494,9 @@ public class Main extends PApplet{
 					    
 					    
 					    
-					    //objeto1
+					    //posicion en la matriz de los objetos(recogibles)
+						    
+						    //objeto1
 						    if(dot1==true) {
 						    	 int filaOB= posYO/30;
 								    int columnaOB = posXO/30;
@@ -532,7 +534,8 @@ public class Main extends PApplet{
 					    
 					    
 					    
-					    
+					    //Estado futruo del pacman y que hacer en cada caso
+						    
 					    switch(estadoFuturo){
 					      case 0:
 					        posX+=velx;
@@ -579,6 +582,8 @@ public class Main extends PApplet{
 
 					    }
 					    
+					    
+					    //continuar de un lado al otro (en la matriz)
 					    if(posX>585) posX=30;
 					    if(posX<0) posX = 570;
 					    if(posY>585) posY =30;
@@ -618,6 +623,7 @@ public class Main extends PApplet{
 					
 				} 
 				
+				//condiciones para reiniciar
 				
 				if(screen==0) {
 					reset=true;
@@ -660,6 +666,7 @@ public class Main extends PApplet{
 				
 				
 				//puntajes
+				
 		  case 2:
 			//	scores.loadPixels();
 				image (scores,0,0);
@@ -670,6 +677,8 @@ public class Main extends PApplet{
 		} 
 	}
 	
+	
+		//contro del pacman con las flechas
 	
 	public void keyPressed() {
 		
