@@ -532,6 +532,7 @@ public class Main extends PApplet{
 					        posX+=velx;
 					        posY+=vely;
 					        break;
+					        
 					      case 1: 
 					       loseScreen=true;
 					       timeStart=false;
@@ -603,6 +604,15 @@ public class Main extends PApplet{
 					
 				} 
 				
+				
+				//perder
+				if (loseScreen==true && mouseX>250 && mouseX<385 && mouseY>380 && mouseY<430 && screen==1 && mousePressed==true) {			
+					screen=0;
+					
+					
+				} 
+				
+				
 				if(screen==0) {
 					reset=true;
 				}
@@ -610,7 +620,7 @@ public class Main extends PApplet{
 					reset=false;
 				}
 				
-				//perder
+				
 				
 				
 				//reiniciar
@@ -633,7 +643,11 @@ public class Main extends PApplet{
 				posX=0;
 				posY=0;
 				winScreen=false;
+				loseScreen=false;
 				htp=true;
+				matrix[0][0]=0;
+				velx = 30;
+				 vely = 0;
 				}
 				
 				break;
