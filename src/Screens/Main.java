@@ -56,7 +56,7 @@ public class Main extends PApplet{
 	Character enemy2;
 	Character enemy3;
 	Character enemy4;
-	
+	boolean reset=false;
 	
 	public static void main(String[] args) {
 		PApplet.main(Main.class.getName());
@@ -532,7 +532,7 @@ public class Main extends PApplet{
 					        posX+=velx;
 					        posY+=vely;
 					        break;
-					      case 1:
+					      case 1: 
 					       loseScreen=true;
 					       timeStart=false;
 					        break;
@@ -564,6 +564,7 @@ public class Main extends PApplet{
 					          if(puntos>=3) {
 					        	timeStart=false;
 					        	  winScreen=true;
+					        	  
 					          }
 					         
 
@@ -587,16 +588,53 @@ public class Main extends PApplet{
 				if(htp==true) {
 					image (howto,92,100);
 				}
-				if (mouseX>250 && mouseX<385 && mouseY>480 && mouseY<530 && screen==1 && mousePressed==true) {
+				if (mouseX>250 && mouseX<385 && mouseY>480 && mouseY<530 && screen==1 && mousePressed==true &&htp==true) {
 			    htp=false;
 			    timeStart=true;
+			   
+			    
+			    println("cliclccccccccc");
 				} 
 				
-				//final
+				//ganar
 				
 				if (winScreen==true && mouseX>250 && mouseX<385 && mouseY>380 && mouseY<430 && screen==1 && mousePressed==true) {			
 					screen=0;
+					
 				} 
+				
+				if(screen==0) {
+					reset=true;
+				}
+				if (screen==1) {
+					reset=false;
+				}
+				
+				//perder
+				
+				
+				//reiniciar
+				
+				if(reset==true) {
+				posXO=180;
+				posXO1=210;
+				posXO2=450;
+				posYO=210;
+				posYO1=390;
+				posYO2=450;
+				
+				
+				puntos=0;
+				time=0;
+				dot1=true;
+				dot2=true;
+				dot3=true;
+				timeStart=false;
+				posX=0;
+				posY=0;
+				winScreen=false;
+				htp=true;
+				}
 				
 				break;
 				
