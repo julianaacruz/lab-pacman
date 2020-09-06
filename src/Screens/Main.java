@@ -19,6 +19,7 @@ public class Main extends PApplet{
 	static PImage down1,down2;
 	static PImage left1,left2;
 	static PImage right1,right2;
+	static PImage diamond;
     private boolean htp = true;
     boolean winScreen =false;
     boolean dot1, dot2, dot3;
@@ -79,6 +80,7 @@ public class Main extends PApplet{
 		orange = loadImage("Clyde.png");
 		win = loadImage("Win.png");
 		lose = loadImage("GameOVer.png");
+		diamond= loadImage("Diamond.png");
 		dot=new Dot(this);
 		pacman = new Pacman(this);
 		enemy1= new Character(this);
@@ -300,16 +302,16 @@ public class Main extends PApplet{
 					for(int col = 0; col < 20; col++) {
 						switch(matrix[fila][col]){
 						case 0: 
-							fill(255);
+							fill(0);
 							rect(col*30,fila*30,30,30);
 							
 						break;
 						case 1: 
-							fill(0);
+							fill(255);
 							rect(col*30,fila*30,30,30);
 						break;
 						case 2: 
-							fill(255);
+							fill(0);
 							rect(col*30,fila*30,30,30);
 						break;
 
@@ -332,22 +334,22 @@ public class Main extends PApplet{
 				pacman.drawPacman(posX,posY);
 				
 				//pintar enemigos
-				enemy1.pintar(posXE,posYE);
-				enemy2.pintar(posXE2,posYE2);
-				enemy3.pintar(posXE3,posYE3);
-				enemy4.pintar(posXE4, posYE4);
+				enemy1.pintar(posXE,posYE,orange);
+				enemy2.pintar(posXE2,posYE2,blue);
+				enemy3.pintar(posXE3,posYE3,yellow);
+				enemy4.pintar(posXE4, posYE4,red);
 				
 				//pintar puntos
 				if(dot1==true) {
-					dot.crear(posXO,posYO);
+					dot.crear(posXO,posYO,diamond);
 				}
 				
 				if(dot2==true) {
-				dot.crear(posXO1,posYO1);
+				dot.crear(posXO1,posYO1,diamond);
 				}
 				
 				if(dot3==true) {
-				dot.crear(posXO2,posYO2); 
+				dot.crear(posXO2,posYO2,diamond); 
 				}
 				
 				//pantalla ganar
