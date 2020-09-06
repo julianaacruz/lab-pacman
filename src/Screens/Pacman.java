@@ -9,6 +9,7 @@ public class Pacman extends PApplet{
 	int y=472;
 	int direction;
 	PApplet app;
+	
 
 
 

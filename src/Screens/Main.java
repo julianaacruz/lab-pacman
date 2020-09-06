@@ -286,7 +286,7 @@ public class Main extends PApplet{
 		  case 1: 
 
 			  
-			  background (122);
+			  background (0);
 			
 				for(int fila = 0; fila < 20; fila++) {
 					for(int col = 0; col < 20; col++) {
@@ -309,13 +309,16 @@ public class Main extends PApplet{
 					}
 				}
 				
+				
+				
 				//puntos
-				  fill(0);
-				  textSize(80);
-				  text(puntos,150,670);
+				
+				  fill(255);
+				  textSize(40);
+				  text("SCORE:" + " " + puntos,100,650);
 				  
 				//Tiempo
-				  text(time,250,670);
+				  text("TIME"+" "+time,320,650);
 				  
 				//pintar pacman
 				pacman.drawPacman(posX,posY);
@@ -410,6 +413,8 @@ public class Main extends PApplet{
 					    
 					    
 					    //Consultar en la matriz el valor futuro
+					    if(timeStart==true) {
+					    
 					    if(velx == 30){
 					      if(columna+1 < 20) estadoFuturo = matrix[fila][columna+1];
 					      else estadoFuturo = matrix[fila][0];
@@ -422,6 +427,7 @@ public class Main extends PApplet{
 					    }else if(vely == -30){
 					      if(fila-1 >= 0) estadoFuturo = matrix[fila-1][columna];
 					      else estadoFuturo = matrix[19][columna];
+					    }
 					    }
 					    
 					    
@@ -436,6 +442,8 @@ public class Main extends PApplet{
 							    }
 						    
 					    
+						    
+						    //enemigos
 					    
 					    int filaE2 = posYE2/30;
 					    int columnaE2= posXE2/30;
@@ -496,6 +504,7 @@ public class Main extends PApplet{
 					        break;
 					      case 1:
 					       loseScreen=true;
+					       timeStart=false;
 					        break;
 					        
 					      case 2:
@@ -522,12 +531,11 @@ public class Main extends PApplet{
 					          puntos++;
 					          
 					          if(puntos>=3) {
+					        	timeStart=false;
 					        	  winScreen=true;
 					          }
 					         
-					          
-					          
-					          
+
 					          break;
 
 					    }
@@ -567,7 +575,13 @@ public class Main extends PApplet{
 	
 	
 	public void keyPressed() {
-		if(keyCode==UP) {
+		
+		
+		if(timeStart==true) {
+			
+			
+			
+			if(keyCode==UP) {
 				vely = -30;
 				velx = 0;
 			
@@ -594,6 +608,10 @@ public class Main extends PApplet{
 			  vely = 0;
 			
 		}
+			
+			
+		}
+		
 		}
 	
 	
