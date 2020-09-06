@@ -46,12 +46,16 @@ public class Main extends PApplet{
 	int posYE2=60;
 	int posXE3=30;
 	int posYE3=420;
+	int posXE4=390;
+	int posYE4=210;
 	//510
 	int vel2=30;
 	int vel3=30;
+	int vel4=30;
 	Character enemy1;
 	Character enemy2;
 	Character enemy3;
+	Character enemy4;
 	
 	
 	public static void main(String[] args) {
@@ -80,6 +84,7 @@ public class Main extends PApplet{
 		enemy1= new Character(this);
 		enemy2= new Character(this);
 		enemy3= new Character(this);
+		enemy4 = new Character (this);
 
 		posXO=180;
 		posXO1=210;
@@ -319,6 +324,7 @@ public class Main extends PApplet{
 				enemy1.pintar(posXE,posYE);
 				enemy2.pintar(posXE2,posYE2);
 				enemy3.pintar(posXE3,posYE3);
+				enemy4.pintar(posXE4, posYE4);
 				
 				//pintar puntos
 				if(dot1==true) {
@@ -383,6 +389,17 @@ public class Main extends PApplet{
 						if (posXE3==540) {
 							vel3=vel3*-1;
 						}
+						
+			     	//4
+						
+						posYE4+=vel;
+						
+						if (posYE4==210) {
+							vel4=vel4*-1;
+						}
+						if (posYE4==360) {
+							vel4=vel4*-1;
+						}
 					
 					
 						
@@ -406,6 +423,52 @@ public class Main extends PApplet{
 					      if(fila-1 >= 0) estadoFuturo = matrix[fila-1][columna];
 					      else estadoFuturo = matrix[19][columna];
 					    }
+					    
+					    
+					    int filaE = posYE/30;
+					    int columnaE = posXE/30;
+					    matrix[filaE][columnaE]=1;
+					    if(vel>0) {
+					    	matrix[filaE-1][columnaE]=0;
+						    }
+						    if(vel3<0) {
+						    	matrix[filaE+1][columnaE]=0;
+							    }
+						    
+					    
+					    
+					    int filaE2 = posYE2/30;
+					    int columnaE2= posXE2/30;
+					    matrix[filaE2][columnaE2]=1;
+					    if(vel2>0) {
+					    	matrix[filaE2][columnaE2-1]=0;
+						    }
+						    if(vel3<0) {
+						    	matrix[filaE2][columnaE2+1]=0;
+							    }
+					    
+					    int filaE3 = posYE3/30;
+					    int columnaE3 = posXE3/30;
+					    matrix[filaE3][columnaE3]=1;
+					    if(vel3>0) {
+					    	matrix[filaE3][columnaE3-1]=0;
+					    }
+					    if(vel3<0) {
+					    	matrix[filaE3][columnaE3+1]=0;
+						    }
+					    
+					    
+					    int filaE4 = posYE4/30;
+					    int columnaE4 = posXE4/30;
+					    matrix[filaE][columnaE4]=1;
+					    if(vel4>0) {
+					    	matrix[filaE4-1][columnaE4]=0;
+						    }
+						    if(vel3<0) {
+						    	matrix[filaE4+1][columnaE4]=0;
+							    }
+					     
+					    
 					    
 					    
 					    //objeto1
