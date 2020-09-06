@@ -45,7 +45,10 @@ public class Main extends PApplet{
 	int posXE2=30;
 	int posYE2=60;
 	int posXE3=30;
-	int posYE3=510;
+	int posYE3=420;
+	//510
+	int vel2=30;
+	int vel3=30;
 	Character enemy1;
 	Character enemy2;
 	Character enemy3;
@@ -348,6 +351,39 @@ public class Main extends PApplet{
 					if(timeStart==true) {
 						time++;
 					}
+					
+					//enemigos mov	
+					
+					//1
+					posYE+=vel;
+					
+					if (posYE==210) {
+						vel=vel*-1;
+					}
+					if (posYE==360) {
+						vel=vel*-1;
+					}
+					
+					//2
+				     posXE2+=vel2;
+					
+					if (posXE2==30) {
+						vel2=vel2*-1;
+					}
+					if (posXE2==540) {
+						vel2=vel2*-1;
+					}
+					
+					//3
+				    posXE3+=vel3;
+					
+						if (posXE3==30) {
+							vel3=vel3*-1;
+						}
+						if (posXE3==540) {
+							vel3=vel3*-1;
+						}
+					
 					
 						
 					    //Coordenadas de la matriz  
