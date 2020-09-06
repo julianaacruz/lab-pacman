@@ -20,6 +20,7 @@ public class Main extends PApplet{
 	static PImage left1,left2;
 	static PImage right1,right2;
 	static PImage diamond;
+	static PImage star;
     private boolean htp = true;
     boolean winScreen =false;
     boolean dot1, dot2, dot3;
@@ -71,7 +72,7 @@ public class Main extends PApplet{
 		pacman1 = loadImage("Pacman1.png");
 		menu = loadImage ("Menu.png");
 		marker = loadImage ("Marker.png");
-		board = loadImage ("Board.png");
+		board = loadImage ("Fondo.png");
 		scores = loadImage ("HighScores.png");
 		howto = loadImage ("HowToPlay.png");
 		blue = loadImage("Inky.png");
@@ -81,6 +82,7 @@ public class Main extends PApplet{
 		win = loadImage("Win.png");
 		lose = loadImage("GameOVer.png");
 		diamond= loadImage("Diamond.png");
+		star= loadImage("star.png");
 		dot=new Dot(this);
 		pacman = new Pacman(this);
 		enemy1= new Character(this);
@@ -297,6 +299,8 @@ public class Main extends PApplet{
 
 			 
 			  background (0);
+			  image(board,0,0);
+			  noStroke();
 			
 				for(int fila = 0; fila < 20; fila++) {
 					for(int col = 0; col < 20; col++) {
@@ -349,7 +353,7 @@ public class Main extends PApplet{
 				}
 				
 				if(dot3==true) {
-				dot.crear(posXO2,posYO2,diamond); 
+				dot.crear(posXO2,posYO2,star); 
 				}
 				
 				//pantalla ganar
